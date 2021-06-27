@@ -100,3 +100,82 @@ What will happen if we get more than 20 number after addition? (https://stackove
          
 In line 15 we have set the value of ah to 2, so until we again set it to 1 it will continue to take input. That means line 21 & 27 is not needed.
 
+# Let's print the string💦(coming ....)
+Do you know? The types of data resister? ............ (comming) <br>
+
+
+# Let's learn aboutcondition and jump💦
+👉First, we will see the unconditional jump <br>
+👉Then different types of conditional jump
+
+## unconditional jump -
+   💣If you are familiar with C, then you can compare `jump` with `goto` <br>
+   💣jmp keyword is used to make a jump <br>
+   💣the syntax is `jmp label_name` <br>
+   💣after seeing jmp program will jump to the label where we defined it <br>
+
+In the below code we will take 2 input, and will write code to print both inputs. But before that, we will write an unconditional jump statement which will jump to a label without printing one input and print the next one. So, the code will show one output. <br>
+
+## code-
+         .model small
+         .stack 100h
+         .data
+
+         .code
+             main proc
+                 ;first input
+                 mov ah, 1 ; preparing ah to take input in al
+                 int 21h
+                 mov bl, al
+
+                 ;going to new line
+                 mov ah, 2 ; preparing ah to print from dl
+                 mov dl, 0dh ;0dh is carriage return
+                 int 21h
+                 mov dl, 0ah ; 0ah is line feed
+                 int 21h
+
+
+                 ;second input
+                 mov ah, 1 ; preparing ah to take input in al
+                 int 21h
+                 mov bh, al
+
+
+                 jmp label_x  ; instruction to jump to label_x
+
+                 ;going to new line
+                 mov ah, 2 ; preparing ah to print from dl
+                 mov dl, 0dh ;0dh is carriage return
+                 int 21h
+                 mov dl, 0ah ; 0ah is line feed
+                 int 21h
+
+                 mov ah, 2 ; preparing ah to print from dl
+                 mov dl, bh
+                 int 21h
+
+
+
+             label_x:
+                 ;going to new line
+                 mov ah, 2 ; preparing ah to print from dl
+                 mov dl, 0dh ;0dh is carriage return
+                 int 21h
+                 mov dl, 0ah ; 0ah is line feed
+                 int 21h
+
+                 mov ah, 2 ; preparing ah to print from dl
+                 mov dl, bl
+                 int 21h       
+
+             main endp
+         end main
+         
+If we give 2 & 5 input to the program, the program will print 2. But without using jump the output would be 5 & 2.
+This is an `unconditional` jump. No condition will be checked, as soon as the line 'jump label_x' is executed program makes a jump. <br>
+
+
+
+
+

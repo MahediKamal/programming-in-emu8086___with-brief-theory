@@ -31,3 +31,34 @@ Hopefully, we all know the basic architecture of 8086. We will also briefly disc
 
           main endp
       end main
+
+# Let's give output💦
+⚠️Do you know? How physical memory address is calculated? <br>
+👉In 8086 physical address is `20` bit. From the logical address of segment address and offset address we calculate the physical address. If, 
+`segment address = 213A`  &   `offset address = 31B1`, then `physical address = 213A0 + 31B1`. <br>
+What will happen if we get more than 20 number after addition? (https://stackoverflow.com/questions/6718783/calculation-of-physical-address-in-8086) <br>
+
+## Steps to print output - 
+  💣Set the value of `ah(AH)` to `2`. For this, we have to write- `mov ah,2`  
+  💣What we want to print, move that value in `dl`. dl is the default location to print output.
+  💣Give the command to execute. When we have 2 in ah and instruct to execute then it will give output and the default location from which output will come in dl. 
+   For this, we have to write- `int 21h`    ; command to execute
+   
+## code-
+         .model small
+         .stack 100h
+
+         .data
+         .code
+             main proc
+
+                 mov ah,1 ;prepqring ah to take input in al 
+                 int 21h ;execute command. By this command code will take input
+                         ; and will store that in al,as ah is now 1 
+                 mov ah,2 ;preparing ah to print from dl
+                 mov dl,al ;assaigning value of al in dl
+                 int 21h ;exexute command. By this command output will be 
+                         ;printed from dl, as ah is now 2    
+
+             main endp
+         end main

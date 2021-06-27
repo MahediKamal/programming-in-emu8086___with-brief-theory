@@ -176,6 +176,47 @@ If we give 2 & 5 input to the program, the program will print 2. But without usi
 This is an `unconditional` jump. No condition will be checked, as soon as the line 'jump label_x' is executed program makes a jump. <br>
 
 
+## conditional jump -
+We can classify jump condition on the basis of the signed number and unsigned number.
+For signed number, we use    : `jl`     `jg`     `jle`     `jge`     `je`     `jnl`     `jng`     `jnle`     `jnge`
+For unsigned number, we use: `ja`    `jb`     `jbe`    `jae`     `je`     `jnb`    `jna`     `jnbe`    `jnae`
+`je` is common for both signed and unsigned number.
+
+Meanings of these key-words- <br>
+- jl      => jump if less <br>
+- jg     => jump if greater <br>
+- jle    => jump if less or equal <br>
+- jge   => jmp if greater or equal <br>
+- jnl    => jump if not equal <br>
+- je     => jump if equal <br>
+- ja     => jump if above <br>
+- jb     => jump if below <br>
+- jbe   => jump if below or equal <br>
+- jnbe => jump if nor=t below or equal <br>
+- jnae => jump if not avobe or equal <br>
+etc.... <br>
+
+
+## Difference between signed jump condition and unsigned jump condition:
+ We know in emu8086 we can have `8` bit or `16-bit` number. For simplicity let's consider we have only 8-bit number. Then if we want to consider the `signed` number then the `8th` bit will represent the `sign(1=negative, 0=positive)`. If we consider the `unsigned` number then the `8th` bit will be considered as a part of the `value`. <br>
+
+⚠️Let's take a question: a = 71 h  and b = 81 h ( h for hexadecimal), now which one is greater, a or b? <br>
+👉The answer is, we can't say which one is greater until we know if we have to consider it as a signed or unsigned number. But why? <br>
+👉lets represent the hexadecimal number in binary : <br>
+
+                          a = 71 h =  0111 0001 b (we considered as 8-bit resister)
+                          b = 81 h = 1000 0001 b 
+                                            
+👉If we consider a and b as a signed number then, b is a negative number, as the 8-th bit is 1, so obviously `b < a`. <br>
+👉again, if we consider the unsigned number, then both of them are positive, and 8-th bit will contribute to the value.  so `b > a` <br>
+
+👉If we consider the signed number then we must use the signed jump condition, if we just consider the value then we must use the unsigned jump condition <br>
+
+
+
+👉Note: for comparing to resister, the size of resister should be the same `(we can't compare bx with cl)`
+
+
 
 
 

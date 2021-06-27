@@ -336,3 +336,75 @@ no carry out fro MSB  so,   CF = 0 <br>
                
 
 more coming ...... <br>
+
+
+# Let's do multiplication and division💦
+***Note: One special use of ax and dx is multiplication and division.*** <br>
+
+## Multiplication:
+According to sign, there are two types of multiplication: <br>
+
+                                    1) Signed multiplication (mul)              2)Unsigned multiplication (imul)
+                                    
+According to bit, there are two types of multiplication: 
+
+                                    1) byte multiplication               2)word multiplication
+                                    
+
+### Byte multiplication:
+Both of the operands should be a byte (8-bit). `al` is the `default operand`, and another one can be any 8-bit register or variable. <br>
+Syntax:   ***`mul source`*** (here the source is any 8-bit register or variable) <br>
+ This is equivalent `as:  ax = al * source`.  So after multiplying 2 8-bit number `result` is stored in a 16-bit register, which is `ax`.
+
+### Word multiplication: 
+Both of the operands should be a word (16-bit). `ax` is `the default operand`, and another one can be any 16-bit register or variable. <br>
+Syntax:   ***`mul source`*** (here the source is any 16-bit register or variable) <br>
+ This is equivalent as:  `dx:ax = ax * source`.  So after multiplying 2 16-bit number `result` is stored in a two 16-bit register: `dx and ax`. Higher 16 bit (`MSB`) of result is saved in `dx`,  and lower 16-bit (`LSB`) is saved in `ax`.
+
+## Let's see the difference between signed and unsigned multiplication:
+### Word multiplication: 
+Let `ax = FFFF h`, `bx = FFFF h` <br>
+
+### Unsigned: (`mul` is used for `unsigned multiplication`)
+        mul bx  
+        is equivalent to dx : ax = ax *  bx
+        here ax = bx = 1111 1111 1111 1111 in binary = 65535 in decimal
+        so, dx:ax = ax * bx = 4294836225 in decimal = FFFE0001 in hexadecimal
+        so, dx = FFFE h and ax = 0001 h  
+        so, dx:ax = ax * bx = 4294836225 in decimal = FFFE0001 in hexadecimal
+        so, dx = FFFE h and ax = 0001 h 
+  
+### Signed: (`imul` is used for `unsigned multiplication`)
+        imul bx  
+        is equivalent to dx : ax = ax *  bx
+        here ax = bx = 1111 1111 1111 1111 in binary ; which is in 2's complement. Is we consider signed         value 
+                  1111 1111 1111 1111
+                                               +1
+                 0000 0000 0000 0001   
+                so, ax = bx = -1 in decimal
+                so, dx:ax = ax * ax = 1 in decimal = 00000001 in hexadecimal
+                so, dx = 0000 h and ax = 0001 h                       
+
+
+Byte multiplication: <br>
+
+
+Let's see the flag resister change for multiplication: <br>
+
+
+
+
+## Division:
+
+### Byte division: 
+syntax:  ***`div  dividend`***  (dividend  is 8-bit resister od variable)
+
+              It is equivalent to:    ax / dividend (remainder = ah, quotient = al)
+
+
+### Word division
+syntax:  ***`div  dividend`***  (dividend  is 16-bit resister od variable)
+
+              It is equivalent to:     dx:ax / dividend (remainder = dx, quotient = ax)
+              
+              

@@ -423,7 +423,7 @@ When we use push- <br>
 - Source value will be stack at the position of SP
 
 ### Visualization of push:
-![...](images/stack_push.png)</br>
+![...](images/stack_push.PNG)</br>
 
 ## POP:
 Syntax: `POP destination` <br>
@@ -431,3 +431,30 @@ Syntax: `POP destination` <br>
 We can also flag resister as the destination for pop. Syntax is `POPF` <br>
 
 If the stack is empty then `SP = 0100h` <br>
+
+# Let's learn about the procedure💦
+Syntax: <br>
+
+         Procedure_name     proc    type
+                             ; body
+
+                             ret
+         Procedure_name      endp
+
+- Here type can be of two types: `near` and `far`. By `default` it is `near`, It is not mandatory to specify the type. <br>
+When we use near and call a procedure from main then main procedure and the called procedure are in the same segment(.code segment). Otherwise, they are in a different segment. <br>
+
+`ret:` If we don't write this after the execution program will not come back from where it was called. it will just normally go to the next line. <br>
+***`Note: If we write ret in the main procedure then it will create an infinity loop.`***
+
+we can also use a number after `ret`: that is, if we write `ret 4` then first it will pop the stack top then it will also `pop (4/2) = 2 word` from the stack. <br>
+
+### How the procedure works:
+When we call a procedure from the `n-th` line then the address of the `n+1` th line is pushed into the `stack`. When the program `finds ret`, it `pops the top` of the stack and `save it to IP`. <br>
+So, if we push something into stack inside procedure then we must pop them before writing ret, otherwise program will not be able to get back to the n+1 th line. <br>
+
+### 3 common ways to pass parameters in the procedure:
+- Through resister
+- Through the global variable
+- Through stack
+

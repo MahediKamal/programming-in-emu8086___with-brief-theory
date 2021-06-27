@@ -408,3 +408,26 @@ syntax:  ***`div  dividend`***  (dividend  is 16-bit resister od variable)
               It is equivalent to:     dx:ax / dividend (remainder = dx, quotient = ax)
               
               
+# Let's learn about stack💦
+When we write ` .stack 100h`   program reserves `100 bytes` for the stack. <br>
+We represent stack memory as `SS:SP` <br>
+`SS = Stack segment` (hold the beginning address of stack) <br>
+`SP = Stack pointer` (hold the address of the top of the stack. this is a 16-bit register) <br>
+
+## PUSH:
+Syntax:  `PUSH source`
+              Here the source is a 16-bit resister (ax,bx etc.) or 16-bit memory variable. <br>
+We can also push the flag resister into the stack as it is a 16-bit register. For this we have to write: `PUSHF` <br>
+When we use push- <br>
+- SP is decremented by 2
+- Source value will be stack at the position of SP
+
+### Visualization of push:
+![...](images/flag_res.png)</br>
+
+## POP:
+Syntax: `POP destination` <br>
+  Here the destination is a 16-bit register or a 16-bit variable. so poped element will be stored into the destination. <br>
+We can also flag resister as the destination for pop. Syntax is `POPF` <br>
+
+If the stack is empty then `SP = 0100h` <br>

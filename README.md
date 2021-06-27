@@ -62,3 +62,41 @@ What will happen if we get more than 20 number after addition? (https://stackove
 
              main endp
          end main
+         
+## In the above code, input and Output is printed in the same line. Let's print output in a new line-
+         .model small
+         .stack 100h
+
+         .data
+         .code
+             main proc
+
+                 mov ah,1 ;prepqring ah to take input in al 
+                 int 21h ;execute command. By this command code will take input
+                         ; and will store that in al,as ah is now 1 
+                 mov bl,al ;moving the input value in bl. 
+
+
+
+                 mov ah,2 ;preparing ah to print from dl
+                 mov dl,0dh ;0dh is carriage return
+                 int 21h ;as al=2, execute command will print from dl
+                         ;as dl=0dh, it will move the cursor to left
+
+
+                 mov ah,2 ;preparing ah to print from dl
+                 mov dl,0ah ;0ah is carriage return.       
+                 int 21h ;as al=2, execute command will print from dl
+                         ;as dl=0ah, it will move the cursor to new line 
+
+
+                 mov ah,2 ;preparing ah to print from dl
+                 mov dl,bl ;assaigning value of bl in dl
+                 int 21h ;exexute command. By this command output will be 
+                         ;printed from dl, as ah is now 2    
+
+             main endp
+         end main
+         
+In line 15 we have set the value of ah to 2, so until we again set it to 1 it will continue to take input. That means line 21 & 27 is not needed.
+

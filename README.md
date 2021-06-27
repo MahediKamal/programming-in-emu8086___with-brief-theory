@@ -6,7 +6,7 @@ Hopefully, we all know the basic architecture of 8086. We will also briefly disc
 
 # Let's take a single input💦 <br>
 
-⚠️Do you know?:
+⚠️Do you know?: <br>
 👉We have 4 types of data resister- `AX`, `BX`, `CX`, `DX`. In 8086 each of them is `16-bit`. Again we divide 16-bit into two 8 bit. Like `AX = AL+ AH` ( 16 = 8 + 8). 
 
 ## Steps to take single input - 
@@ -214,7 +214,15 @@ etc.... <br>
 
 
 
-👉Note: for comparing to resister, the size of resister should be the same `(we can't compare bx with cl)`
+**Note: for comparing to resister, the size of resister should be the same `(we can't compare bx with cl)`**
+
+# Let's check Loop operation💦
+## Steps for using loop instruction - 
+   💣loop instruction is directly related to `cx` resister.  looping process will continue until the value of cx resister become `0`. <br>
+   💣First, we will set the value of cx resister to the number(say n) we want to loop. <br>
+   💣Then we will declear a label and do some work under the label and then write the loop instruction. the work under the label will be perform  n times. <br>
+
+**Note: Loop will always integrate on the value of cx. If we put ch =0 and cl = any_8_bit_number, then the value is also equal to the value of `cl`.**
 
 
 

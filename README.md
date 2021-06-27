@@ -423,7 +423,7 @@ When we use push- <br>
 - Source value will be stack at the position of SP
 
 ### Visualization of push:
-![...](images/flag_res.png)</br>
+![...](images/stack_push.png)</br>
 
 ## POP:
 Syntax: `POP destination` <br>

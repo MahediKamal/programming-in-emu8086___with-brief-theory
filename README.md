@@ -314,4 +314,25 @@ no carry out fro MSB  so,   CF = 0 <br>
 
 
 
+# Let's check variable💦
+👉db  = 1 byte <br>
+👉dw = 2 byte <br>
+👉dd = 4 bute <br>
+👉dq = 8 byte <br>
+👉dt = 16 byte <br>
 
+    Syntax : variable_name       defien_derective(type)        initial_value
+
+***Note: if we don't want to initialize any value we can put a ? at that palace.*** <br>
+
+⚠️Do you know: We can't compare between two variable, One must be a resister.
+
+## Steps for using variable - 
+   💣First, we have to declare the variable in the data segment
+   💣to use the declared variable in the data code we have to write two lines-
+   
+                        mov ax,@data
+                        mov ds,ax
+               
+
+more coming ...... <br>

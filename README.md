@@ -371,16 +371,15 @@ Let `ax = FFFF h`, `bx = FFFF h` <br>
         here ax = bx = 1111 1111 1111 1111 in binary = 65535 in decimal
         so, dx:ax = ax * bx = 4294836225 in decimal = FFFE0001 in hexadecimal
         so, dx = FFFE h and ax = 0001 h  
-        so, dx:ax = ax * bx = 4294836225 in decimal = FFFE0001 in hexadecimal
-        so, dx = FFFE h and ax = 0001 h 
+    
   
 ### Signed: (`imul` is used for `unsigned multiplication`)
         imul bx  
         is equivalent to dx : ax = ax *  bx
-        here ax = bx = 1111 1111 1111 1111 in binary ; which is in 2's complement. Is we consider signed         value 
-                  1111 1111 1111 1111
-                                               +1
-                 0000 0000 0000 0001   
+        here ax = bx = 1111 1111 1111 1111 in binary ; which is in 2's complement. If we consider signed  value 
+                       0000 0000 0000 0000  
+                                        +1
+                       0000 0000 0000 0001   
                 so, ax = bx = -1 in decimal
                 so, dx:ax = ax * ax = 1 in decimal = 00000001 in hexadecimal
                 so, dx = 0000 h and ax = 0001 h                       

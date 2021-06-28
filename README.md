@@ -263,7 +263,7 @@ Let's think logically, why it is not signed overflow.  <br>
 let, ax and bx are signed numbers, then MSB represents sign. MSB of ax is 1, so ax contains a negative number, on the other hand, MSB of bx is 0, so bx is a positive number. by adding a positive+negative no overflow can't occur. So OF = 0; <br>
 Let, ax and bx are the unsigned numbers. SO MSB will also add to the value. And after adding the values there is a carry out, so unsigned overflow occurred. CF =1 . <br>
 
-***Note: if we consider numbers as unsigned, then negative numbers are in the 2's complement form.*** <br>
+***Note: if we consider numbers as signed, then negative numbers are in the 2's complement form.*** <br>
 
 ***EX-2:*** <br>
 ***ax  = 7FFF h   and bx = 7FFF h. add ax and bx and find the value of CF and OF.*** <br>

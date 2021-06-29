@@ -216,6 +216,8 @@ etc.... <br>
 
 **Note: for comparing to resister, the size of resister should be the same `(we can't compare bx with cl)`**
 
+👉[***try this problem***](practice_problems/01.md)
+
 # Let's check Loop operation💦
 ## Steps for using loop instruction - 
    💣loop instruction is directly related to `cx` resister.  looping process will continue until the value of cx resister become `0`. <br>

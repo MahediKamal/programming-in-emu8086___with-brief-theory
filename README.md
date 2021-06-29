@@ -405,7 +405,8 @@ syntax:  ***`div  dividend`***  (dividend  is 8-bit resister od variable)
 syntax:  ***`div  dividend`***  (dividend  is 16-bit resister od variable)
 
               It is equivalent to:     dx:ax / dividend (remainder = dx, quotient = ax)
-              
+
+👉[***try this problem***](practice_problems/04.md)
               
 # Let's learn about stack💦
 When we write ` .stack 100h`   program reserves `100 bytes` for the stack. <br>

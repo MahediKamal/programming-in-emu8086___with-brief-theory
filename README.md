@@ -344,17 +344,17 @@ more coming ...... <br>
 ## Multiplication:
 According to sign, there are two types of multiplication: <br>
 
-                                    1) Signed multiplication (mul)              2)Unsigned multiplication (imul)
+                     1) Signed multiplication (mul)              2)Unsigned multiplication (imul)
                                     
 According to bit, there are two types of multiplication: 
 
-                                    1) byte multiplication               2)word multiplication
+                     1) byte multiplication               2)word multiplication
                                     
 
 ### Byte multiplication:
 Both of the operands should be a byte (8-bit). `al` is the `default operand`, and another one can be any 8-bit register or variable. <br>
 Syntax:   ***`mul source`*** (here the source is any 8-bit register or variable) <br>
- This is equivalent `as:  ax = al * source`.  So after multiplying 2 8-bit number `result` is stored in a 16-bit register, which is `ax`.
+ This is equivalent as:  `ax = al * source`.  So after multiplying 2 8-bit number `result` is stored in a 16-bit register, which is `ax`.
 
 ### Word multiplication: 
 Both of the operands should be a word (16-bit). `ax` is `the default operand`, and another one can be any 16-bit register or variable. <br>
@@ -430,6 +430,8 @@ Syntax: `POP destination` <br>
 We can also flag resister as the destination for pop. Syntax is `POPF` <br>
 
 If the stack is empty then `SP = 0100h` <br>
+
+ 👉[***try this problem***](practice_problems/05.md)
 
 # Let's learn about the procedure💦
 Syntax: <br>

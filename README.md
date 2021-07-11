@@ -1,10 +1,46 @@
+
+## Contents
+- [Input](#take-a-single-input)
+- [Output](#give-output)
+- [Jump](#condition-and-jump)
+	- [unconditional jump](#unconditional-jump--)
+	- [conditional jump](#conditional-jump--)
+	- [signed Vs unsigned jmp](#difference-between-signed-jump-condition-and-unsigned-jump-condition)
+- [Loop](#loop-operation)
+- [Flag resister](#about-the-flag-register)
+	- [Status Flag](#first-talk-about-the-status-flags-)
+	- [Exercise(flag)](#try-some-exercise-)
+- [Variable](#about-variable)
+- [Multiplication and Division](#do-multiplication-and-division)
+	- [Multiplication](#multiplication)
+		- [Byte multiplication](#byte-multiplication)
+		- [Word multiplication](#word-multiplication)
+		- [signed Vs unsigned multiplication](#difference-between-signed-and-unsigned-multiplication)
+- [Division](#division)
+	- [Byte Division](#byte-division)
+	- [Word Division](#word-division)
+- [Stack](#about-stack)
+	- [Push](#push)
+	- [Pop](#pop)
+- [Procedure](#about-the-procedure)
+	- [How procedure works](#how-the-procedure-works)
+- [Array](#about-array)
+	- [Dup](#how-dup-works-with-example-)
+	- [Types of addressing  modes](#types-of-addressing--modes-)
+	- [Representation Style](#some-representation-style-)
+	- [Addressing Example](#some-example-for-better-understanding-)
+
+<br>
+<br>
+<br>
+
 # programming in emu8086 (with brief theory)
 
 Hopefully, we all know the basic architecture of 8086. We will also briefly discuss it along with the sample code. Let's start ☺ <br>
 👉This is not case sensitive language. So int and INT seems equivalent to it. <br>
 👉To comment in code we have to put ( ; ) <br>
 
-# Let's take a single input💦 <br>
+# Take a single input💦
 
 ⚠️Do you know?: <br>
 👉We have 4 types of data resister- `AX`, `BX`, `CX`, `DX`. In 8086 each of them is `16-bit`. Again we divide 16-bit into two 8 bit. Like `AX = AL+ AH` ( 16 = 8 + 8). 
@@ -32,7 +68,7 @@ Hopefully, we all know the basic architecture of 8086. We will also briefly disc
           main endp
       end main
 
-# Let's give output💦
+# Give output💦
 ⚠️Do you know? How physical memory address is calculated? <br>
 👉In 8086 physical address is `20` bit. From the logical address of segment address and offset address we calculate the physical address. If, 
 `segment address = 213A`  &   `offset address = 31B1`, then `physical address = 213A0 + 31B1`. <br>
@@ -104,7 +140,7 @@ In line 15 we have set the value of ah to 2, so until we again set it to 1 it wi
 Do you know? The types of data resister? ............ (comming) <br>
 
 
-# Let's learn aboutcondition and jump💦
+# Condition and Jump💦
 👉First, we will see the unconditional jump <br>
 👉Then different types of conditional jump
 
@@ -218,7 +254,7 @@ etc.... <br>
 
 👉[***try this problem***](practice_problems/01.md)
 
-# Let's check Loop operation💦
+# Loop operation💦
 ## Steps for using loop instruction - 
    💣loop instruction is directly related to `cx` resister.  looping process will continue until the value of cx resister become `0`. <br>
    💣First, we will set the value of cx resister to the number(say n) we want to loop. <br>
@@ -227,7 +263,7 @@ etc.... <br>
 **Note: Loop will always integrate on the value of cx. If we put ch =0 and cl = any_8_bit_number, then the value is also equal to the value of `cl`.**
 
 
-# Let's Learn about the flag register💦
+# About the flag register💦
 
 ![...](images/flag_res.png)</br>
 
@@ -236,7 +272,7 @@ We can divide the 9 flags into 2 groups.  <br>
 - Control flags (`TF, IF, DF`)  <br>
 - Status flags (`CF, PF, AF, ZF, SF, OF`)  <br>
 
-## Let's first talk about the status flags- 
+## First talk about the status flags- 
 ### Status flags are -         
   👉 `CF` = `Carry Flag` (If there is a carry from MSB or a borrow in MSB then CF will be 1. If we are doing arithmetic, then we will consider CF.) <br>
   👉 `PF` = `Parity Flag` (We will make odd parity. If in the lower 8-bit , number of 1 is even then Pf = 1)  <br>
@@ -251,7 +287,7 @@ We can divide the 9 flags into 2 groups.  <br>
 ### Why these two points? 
 => MSB is different means, one operand is positive and another is negative. By adding one positive with a negative, overflow can't occur. Now if point 1 is fulfilled, then result MSB is different means that - adding two negative we have got positive or vice-versa, so then OF will be 1. <br>
 
-### Let's do some exercise-
+### Try some exercise-
 ***Ex-1:*** <br>
 ***`ax = FFFF h`    and     `bx  = 0001 h`, now add `ax` and `bx` and say which types of overflow occurs. signed or unsigned?*** <br>
 ***=>*** <br>
@@ -316,7 +352,7 @@ no carry out fro MSB  so,   CF = 0 <br>
 
 
 
-# Let's check variable💦
+# About variable💦
 👉db  = 1 byte <br>
 👉dw = 2 byte <br>
 👉dd = 4 bute <br>
@@ -340,7 +376,7 @@ no carry out fro MSB  so,   CF = 0 <br>
 more coming ...... <br>
 
 
-# Let's do multiplication and division💦
+# Do multiplication and division💦
 ***Note: One special use of ax and dx is multiplication and division.*** <br>
 
 ## Multiplication:
@@ -363,7 +399,7 @@ Both of the operands should be a word (16-bit). `ax` is `the default operand`, a
 Syntax:   ***`mul source`*** (here the source is any 16-bit register or variable) <br>
  This is equivalent as:  `dx:ax = ax * source`.  So after multiplying 2 16-bit number `result` is stored in a two 16-bit register: `dx and ax`. Higher 16 bit (`MSB`) of result is saved in `dx`,  and lower 16-bit (`LSB`) is saved in `ax`.
 
-## Let's see the difference between signed and unsigned multiplication:
+## Difference between signed and unsigned multiplication:
 ### Word multiplication: 
 Let `ax = FFFF h`, `bx = FFFF h` <br>
 
@@ -410,7 +446,7 @@ syntax:  ***`div  dividend`***  (dividend  is 16-bit resister od variable)
 
 👉[***try this problem***](practice_problems/04.md)
               
-# Let's learn about stack💦
+# About stack💦
 When we write ` .stack 100h`   program reserves `100 bytes` for the stack. <br>
 We represent stack memory as `SS:SP` <br>
 `SS = Stack segment` (hold the beginning address of stack) <br>
@@ -436,7 +472,7 @@ If the stack is empty then `SP = 0100h` <br>
 
  👉[***try this problem***](practice_problems/05.md)
 
-# Let's learn about the procedure💦
+# About the procedure💦
 Syntax: <br>
 
          Procedure_name     proc    type
@@ -462,7 +498,7 @@ So, if we push something into stack inside procedure then we must pop them befor
 - Through the global variable
 - Through stack
 
-# Let's learn about array💦
+# About array💦
 We can have two types of array
 
          1) Array of words(dw)         2) Array of byte(db)
@@ -485,7 +521,7 @@ Array of words of 40 elements and value is uninitialized(created using the keywo
 ### How `dup` works with example-
 👉 Let's find the meaning of 4,5,3 dup(2,3 dup(0), 1)	
 	 
-				4, 5, 3 `dup(2, 3 dup(0), 1)`
+			    4, 5, 3 `dup(2, 3 dup(0), 1)`
 			   =4, 5, `2, 3 dup(0), 1`, `2, 3 dup(0), 1`, `2, 3 dup(0), 1`
 			   =4, 5, 2, `3 dup(0)`, 1, 2, `3 dup(0)`, 1, 2, `3 dup(0)`, 1
 			   =4, 5, 2, `0, 0, 0`, 1, 2, `0, 0, 0`, 1, 2, `0, 0, 0`
@@ -494,7 +530,7 @@ Array of words of 40 elements and value is uninitialized(created using the keywo
 👉 Do you know data segment can use maximum 64kb <br>
 
 For unsing array we need to know about addressing modes <br>
-*** Types of addressing  modes- *** 
+### Types of addressing  modes- 
 - (1) register mode (Ex- MOV Ax, BX;  here both are resisters)
 - (2) immediate mode (Ex- MOV Ax, 1; here one is constant)
 - (3) direct mode (Ex- MOV Ax, c; here c is a variable)
@@ -528,18 +564,18 @@ indexed addressing mode. <br>
 
 ## Some representation style-
 			  
-			  - 2[bx] = [bx+2]
-			  - arr[bx+Si] = [arr+bx+Si]
-			  - arr[bx][Si] = [arr+bx+Si]
+	- 2[bx] = [bx+2]
+	- arr[bx+Si] = [arr+bx+Si]
+	- arr[bx][Si] = [arr+bx+Si]
 
 ## Some example for better understanding-
 			
-			- MOV Bx, [Bx]   <-- Valid:   Though both are `Bx`
-			- MOV Ax, [Ax]   <-- Invalid: As `Ax` can't be use as an offset resister
-			- Inc [DI]       <-- Valid
-			- MOV Ax, [Bx]2  <-- Valid: But it was invalid in old version. 2[bx] is valid in old version but [bs]2 was invalid
-			- MOV bx,[arr+Ax]<-- Invalid: As `Ax` can't be use as an offset resister
-			- MOV Ax, -2[Si] <-- Valid: -2[Si] = [Si - 2]
+	- MOV Bx, [Bx]   <-- Valid:   Though both are `Bx`
+	- MOV Ax, [Ax]   <-- Invalid: As `Ax` can't be use as an offset resister
+	- Inc [DI]       <-- Valid
+	- MOV Ax, [Bx]2  <-- Valid: But it was invalid in old version. 2[bx] is valid in old version but [bs]2 was invalid
+	- MOV bx,[arr+Ax]<-- Invalid: As `Ax` can't be use as an offset resister
+	- MOV Ax, -2[Si] <-- Valid: -2[Si] = [Si - 2]
 			
 	
 		 

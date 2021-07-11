@@ -462,3 +462,88 @@ So, if we push something into stack inside procedure then we must pop them befor
 - Through the global variable
 - Through stack
 
+# Let's learn about array💦
+We can have two types of array
+
+         1) Array of words(dw)         2) Array of byte(db)
+		 
+		 
+Syntax: <br>
+Array of words of 5 elements and value is initialized-
+ 
+         array_name    dw     10, 20, 'a', 4, 'v'  		 
+		 
+Array of bytes of 4 elements and value is uninitialized-		 
+		 
+		 array_name    db     ?, ?, ?, ?
+
+Array of words of 40 elements and value is uninitialized(created using the keyword `dup` ) -
+
+		array_name     dw     40 dup(?)
+
+
+### How `dup` works with example-
+👉 Let's find the meaning of 4,5,3 dup(2,3 dup(0), 1)	
+	 
+				4, 5, 3 `dup(2, 3 dup(0), 1)`
+			   =4, 5, `2, 3 dup(0), 1`, `2, 3 dup(0), 1`, `2, 3 dup(0), 1`
+			   =4, 5, 2, `3 dup(0)`, 1, 2, `3 dup(0)`, 1, 2, `3 dup(0)`, 1
+			   =4, 5, 2, `0, 0, 0`, 1, 2, `0, 0, 0`, 1, 2, `0, 0, 0`
+			
+
+👉 Do you know data segment can use maximum 64kb <br>
+
+For unsing array we need to know about addressing modes <br>
+*** Types of addressing  modes- *** 
+- (1) register mode (Ex- MOV Ax, BX;  here both are resisters)
+- (2) immediate mode (Ex- MOV Ax, 1; here one is constant)
+- (3) direct mode (Ex- MOV Ax, c; here c is a variable)
+- (4) register inderect (Ex- MOV Ax, [SI]; here [SI] is the value where SI points)
+- (5) based/indexed addressing mode (Ex- MOV Ax, arr[bx]; here arr[bx] means arr+bx)
+
+## To understand 4 and 5 addressing mode we need to know about segment and offset resister-
+We divide the memory into different segments (code segment, data segment, stack segment) and to identify a location uniquely
+in a segment we use offset. So to indicate a memory we need the value of both segment and offset.<br>
+<br>
+If we write `MOV Ax, [SI]`, then SI is the offset here but what will be the segment? <br>
+=> The answer is, for each offset register a segment if fixed. If we use the resister `SI`, then it will automatically use
+`DS` (data segment) as the segment. <br>
+Offset resister is also fixed, we can't use every resister ar the offset. <br>
+- So for which offset register, which segment is going to be used-
+				
+				      Segment                  offset register
+				----------------               ---------------
+				Data segment(DS)                 BX, SI, DI
+				Stack segment                    BP
+				Code segment                     IP (we are not going to use this)
+				
+So when we write `MOV Ax, arr[bx]`, code segment will be data segment as `bx` is used. And offset address is `arr+bx`.<br>
+<br>
+👉 If we want an offset register(bx, si, or di) to point at the beginning of an array then we have to write `LEA SI, arr_name`.
+<br>
+
+⚠️ What is the difference  between based addressing mode and indexed addressing mode? <br>
+👉 When we use `bx` as offset resister the it is called based addressing mode. And when we use `SI` or `DI` it is called 
+indexed addressing mode. <br>
+
+## Some representation style-
+			  
+			  - 2[bx] = [bx+2]
+			  - arr[bx+Si] = [arr+bx+Si]
+			  - arr[bx][Si] = [arr+bx+Si]
+
+## Some example for better understanding-
+			
+			- MOV Bx, [Bx]   <-- Valid:   Though both are `Bx`
+			- MOV Ax, [Ax]   <-- Invalid: As `Ax` can't be use as an offset resister
+			- Inc [DI]       <-- Valid
+			- MOV Ax, [Bx]2  <-- Valid: But it was invalid in old version. 2[bx] is valid in old version but [bs]2 was invalid
+			- MOV bx,[arr+Ax]<-- Invalid: As `Ax` can't be use as an offset resister
+			- MOV Ax, -2[Si] <-- Valid: -2[Si] = [Si - 2]
+			
+	
+		 
+		 
+		 
+		 
+		 

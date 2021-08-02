@@ -1,4 +1,9 @@
 
+
+<head>
+ 	<link rel="shortcut icon" type="image/jpg" href="https://github.com/MahediKamal/MahediKamal.github.io/blob/master/images/favicon.png"/>	
+</head>
+
 ## Contents
 - [Input](#take-a-single-input)
 - [Output](#give-output)

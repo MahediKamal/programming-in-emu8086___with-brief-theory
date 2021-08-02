@@ -1,7 +1,8 @@
 
 
 <head>
- 	<link rel="shortcut icon" type="image/jpg" href="https://github.com/MahediKamal/MahediKamal.github.io/blob/master/images/favicon.png"/>	
+<!--  	<link rel="shortcut icon" type="image/jpg" href="https://github.com/MahediKamal/MahediKamal.github.io/blob/master/images/favicon.png"/>	 -->
+	<link rel="shortcut icon" type="image/jpg" href="https://github.com/MahediKamal/MahediKamal.github.io/blob/117b3afbe29e0dac850b939f329e9d04db833751/images/favicon.png"/>	
 </head>
 
 ## Contents

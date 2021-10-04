@@ -16,9 +16,9 @@
 		- [Byte multiplication](#byte-multiplication)
 		- [Word multiplication](#word-multiplication)
 		- [signed Vs unsigned multiplication](#difference-between-signed-and-unsigned-multiplication)
-- [Division](#division)
-	- [Byte Division](#byte-division)
-	- [Word Division](#word-division)
+	- [Division](#division)
+		- [Byte Division](#byte-division)
+		- [Word Division](#word-division)
 - [Stack](#about-stack)
 	- [Push](#push)
 	- [Pop](#pop)
@@ -542,7 +542,7 @@ We divide the memory into different segments (code segment, data segment, stack 
 in a segment we use offset. So to indicate a memory we need the value of both segment and offset.<br>
 <br>
 If we write `MOV Ax, [SI]`, then SI is the offset here but what will be the segment? <br>
-=> The answer is, for each offset register a segment if fixed. If we use the resister `SI`, then it will automatically use
+=> The answer is, for each offset register a segment is fixed. If we use the resister `SI`, then it will automatically use
 `DS` (data segment) as the segment. <br>
 Offset resister is also fixed, we can't use every resister ar the offset. <br>
 - So for which offset register, which segment is going to be used-
@@ -553,7 +553,7 @@ Offset resister is also fixed, we can't use every resister ar the offset. <br>
 				Stack segment                    BP
 				Code segment                     IP (we are not going to use this)
 				
-So when we write `MOV Ax, arr[bx]`, code segment will be data segment as `bx` is used. And offset address is `arr+bx`.<br>
+So when we write `MOV Ax, arr[bx]`, segment will be data segment as `bx` is used. And offset address is `arr+bx`.<br>
 <br>
 👉 If we want an offset register(bx, si, or di) to point at the beginning of an array then we have to write `LEA SI, arr_name`.
 <br>
@@ -577,9 +577,57 @@ indexed addressing mode. <br>
 	- MOV bx,[arr+Ax]<-- Invalid: As `Ax` can't be use as an offset resister
 	- MOV Ax, -2[Si] <-- Valid: -2[Si] = [Si - 2]
 			
+👉 ***For byte n-th element is at position n-1 in reative to starting index, and for word array that is 2(n-1)*** <br> 	
+		 
+		 
+# About  String💦		 
+** Fixed rules for string(operand are fixed for string operation)- **
+	- `SI` register must point to the source string character.(If any source string) 
+	- `DI` register must point to the destination string character.(If any destination string) 
+	- If we are not using source or destination string then register can be only `AX` or `al` 
+
+** For example **
+If we want to move any character for string s1 to string s2 then `SI` must point to the character of S1 and `DI` to S2. <br>
+If we want to compare between a register and string character, then resister must be `AX` or `al`.
+
+** Offcet and segment relation for string ** 
+				
+				segment      offcet
+				------       ------
+				  DS           SI (for source)
+				  ES           DI (for destination)
+		
+** befor using DS and ES segment we have to initialize them by three lines of code **
+
+				MOV ax,@data
+				MOV ds,ax
+				MOV es,ax
+
+
+- Moving(copying) sigle byte(for byte array) or word(for word array) from str1 to str2-
+	💣 point `SI` register to the character we want to copy from str1
+	💣 Point `DI` resister to the position where we to copy in str2
+	💣 Then write `MOVSB` for byte string and `MOVSW` for word string
+
+- Load(copying) signle byte(for byte array) or word(for word array) from a string to resister-
+	💣 point `SI` register to the character we want to copy from str1
+	💣 Then write `LODSB` for byte string and `LODSW` for word string
+	💣 For `LODSB` character will be copied to `al` and for `LODSW` character will be copied to `ax`
+
+- Store(copying) signle byte(for byte array) or word(for word array) from a resister to string- 	
+	💣 point `DI` register to the character where we want to copy to str1
+	💣 Then write `STOSB` for byte string and `STOSW` for word string
+	💣 For `STOSB` character will be copied from `al` and for `STOSW` character will be copied from `ax`
+
+- Compare(comparing between strings) signle byte(for byte array) or word(for word array) of two string- 	
+	💣 point `DI` and `SI` register to the two characters of the two string
+	💣 Then write `CMPSB` for byte string and `CMPSW` for word string
+
+- Scan(comparing between string and register) signle byte(for byte array) or word(for word array)- 	
+	💣 point `DI`  to the character of the string
+	💣 Then write `SCASB` for byte string and `SCASW` for word string (this will compare between register(al or ax) and string)
 	
-		 
-		 
-		 
-		 
+
+
+			
 		 

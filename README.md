@@ -35,6 +35,7 @@
 	- [Types of addressing  modes](#types-of-addressing--modes-)
 	- [Representation Style](#some-representation-style-)
 	- [Addressing Example](#some-example-for-better-understanding-)
+- [String](#about-string)
 
 <br>
 <br>
@@ -586,52 +587,53 @@ indexed addressing mode. <br>
 👉 ***For byte n-th element is at position n-1 in reative to starting index, and for word array that is 2(n-1)*** <br> 	
 		 
 		 
-# About  String💦		 
-** Fixed rules for string(operand are fixed for string operation)- **
+# About String💦		 
+**Fixed rules for string(operand are fixed for string operation)-** <br>
 	- `SI` register must point to the source string character.(If any source string) 
 	- `DI` register must point to the destination string character.(If any destination string) 
 	- If we are not using source or destination string then register can be only `AX` or `al` 
 
-** For example **
+**For example** <br>
 If we want to move any character for string s1 to string s2 then `SI` must point to the character of S1 and `DI` to S2. <br>
 If we want to compare between a register and string character, then resister must be `AX` or `al`.
 
-** Offcet and segment relation for string ** 
+**Offcet and segment relation for string** 
 				
 				segment      offcet
 				------       ------
 				  DS           SI (for source)
 				  ES           DI (for destination)
 		
-** befor using DS and ES segment we have to initialize them by three lines of code **
+**befor using DS and ES segment we have to initialize them by three lines of code**
 
 				MOV ax,@data
 				MOV ds,ax
 				MOV es,ax
 
 
-- Moving(copying) sigle byte(for byte array) or word(for word array) from str1 to str2-
-	💣 point `SI` register to the character we want to copy from str1
-	💣 Point `DI` resister to the position where we to copy in str2
-	💣 Then write `MOVSB` for byte string and `MOVSW` for word string
+- Moving(copying) sigle byte(for byte array) or word(for word array) from str1 to str2-<br>
 
-- Load(copying) signle byte(for byte array) or word(for word array) from a string to resister-
-	💣 point `SI` register to the character we want to copy from str1
-	💣 Then write `LODSB` for byte string and `LODSW` for word string
-	💣 For `LODSB` character will be copied to `al` and for `LODSW` character will be copied to `ax`
+	💣 point `SI` register to the character we want to copy from str1 <br>
+	💣 Point `DI` resister to the position where we to copy in str2 <br>
+	💣 Then write `MOVSB` for byte string and `MOVSW` for word string <br>
 
-- Store(copying) signle byte(for byte array) or word(for word array) from a resister to string- 	
-	💣 point `DI` register to the character where we want to copy to str1
-	💣 Then write `STOSB` for byte string and `STOSW` for word string
-	💣 For `STOSB` character will be copied from `al` and for `STOSW` character will be copied from `ax`
+- Load(copying) signle byte(for byte array) or word(for word array) from a string to resister- <br>
+	💣 point `SI` register to the character we want to copy from str1 <br>
+	💣 Then write `LODSB` for byte string and `LODSW` for word string <br>
+	💣 For `LODSB` character will be copied to `al` and for `LODSW` character will be copied to `ax` <br>
 
-- Compare(comparing between strings) signle byte(for byte array) or word(for word array) of two string- 	
-	💣 point `DI` and `SI` register to the two characters of the two string
-	💣 Then write `CMPSB` for byte string and `CMPSW` for word string
+- Store(copying) signle byte(for byte array) or word(for word array) from a resister to string- <br>	
+	💣 point `DI` register to the character where we want to copy to str1 <br>
+	💣 Then write `STOSB` for byte string and `STOSW` for word string <br>
+	💣 For `STOSB` character will be copied from `al` and for `STOSW` character will be copied from `ax` <br>
 
-- Scan(comparing between string and register) signle byte(for byte array) or word(for word array)- 	
-	💣 point `DI`  to the character of the string
-	💣 Then write `SCASB` for byte string and `SCASW` for word string (this will compare between register(al or ax) and string)
+- Compare(comparing between strings) signle byte(for byte array) or word(for word array) of two string- <br>
+	💣 point `DI` and `SI` register to the two characters of the two string <br>
+	💣 Then write `CMPSB` for byte string and `CMPSW` for word  <br>
+
+- Scan(comparing between string and register) signle byte(for byte array) or word(for word array)-  <br>	
+	💣 point `DI`  to the character of the string <br>
+	💣 Then write `SCASB` for byte string and `SCASW` for word string (this will compare between register(al or ax) and string) <br>
 	
 
 
